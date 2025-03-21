@@ -21,9 +21,7 @@ const StudentRegistrationForm = (props) => {
     const studentFormSubmitClickHandler = async (event) => {
         event.preventDefault();     
         console.log('Registration Form Clicked');
-
         console.log(formData);
-        
         try {
             const response = await axios.post('http://localhost:3000/student', formData, {
                 headers: {
@@ -34,13 +32,12 @@ const StudentRegistrationForm = (props) => {
             const apiData = await response.data;
             console.log(apiData);
             if(response.status === 201){
-                alert('Student Registered Successfully');                
+                alert('Student Registered Successfully');    
+                window.location.href='/';
             }
         } catch (error) {
             console.log(error);
-            
         }
-
 
     };
 

@@ -57,6 +57,15 @@ const StudentListingComponent = (props) => {
 
     }
 
+    const updateStudentHandler = ( ) => {
+        console.log('Update Student Handler');
+    }
+
+    const deleteStudentHandler = ( ) => {
+        console.log('Delete Student Handler');
+        
+    }
+
     useEffect(() => {
         console.log('Student Listing Component Mounted');
         fetchStudentList();
@@ -73,6 +82,8 @@ const StudentListingComponent = (props) => {
                         <th>Name</th>
                         <th>Email</th>
                         <th>Phone</th>
+                        <th>Edit</th>
+                        <th>Delete</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -84,6 +95,8 @@ const StudentListingComponent = (props) => {
                                     <td>{student.studentName}</td>
                                     <td>{student.studentEmail}</td>
                                     <td>{student.studentPhone}</td>
+                                    <td><button type="button" onClick={updateStudentHandler}>Edit</button></td>
+                                    <td><button type="button" onClick={deleteStudentHandler}>Delete</button></td>
                                 </tr>
                             );
                         })
