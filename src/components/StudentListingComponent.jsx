@@ -6,35 +6,6 @@ const StudentListingComponent = (props) => {
 
     const [studentList, setStudentList] = useState([]);
 
-    const isObjectEmpty = (obj) => {
-
-        for(let prop in obj) {
-            console.log('>>>>'+prop);
-            
-            if(obj.hasOwnProperty(prop)) {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    console.log(isObjectEmpty(props.studentAdded));
-
-    if(isObjectEmpty(props.studentAdded) === false){
-        console.log('Student Added');
-        setStudentList([...studentList, props.studentAdded]);
-
-    }
-        
-
-//    console.log('>>>>'+JSON.stringify(props.studentAdded).length);
-//    console.log('>>>>'+JSON.stringify(props.studentAdded) === '{}');
-    
-
-    // const updateStudentListHandler = (student) => {
-    //     setStudentList([...studentList, student]);
-    // }
-
     const fetchStudentList = async () => {
         console.log('Fetching Student List');   
         try {
@@ -52,7 +23,6 @@ const StudentListingComponent = (props) => {
                 
         } catch (error) {
             console.log(error);
-            
         }
 
     }
