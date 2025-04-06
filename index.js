@@ -16,7 +16,7 @@ app.use(express.json());
 app.use(cors());
 
 //GET all students
-app.get('/students', (req, res) => {
+app.get('/students/all', (req, res) => {
     db.all('SELECT * FROM students', (err, rows) => {
         if (err) {
             console.error(err.message);
