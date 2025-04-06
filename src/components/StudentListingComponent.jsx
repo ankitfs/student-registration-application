@@ -38,11 +38,12 @@ const StudentListingComponent = (props) => {
     const fetchStudentList = async () => {
         console.log('Fetching Student List');   
         try {
-            const fetchStudentAPI = await axios.get('http://localhost:3000/students');
+            const fetchStudentAPI = await axios.get('http://localhost:3000/students/all');
             const fetchStudentDetails = await fetchStudentAPI.data;
             console.log(fetchStudentDetails);
             setStudentList(fetchStudentDetails.map((student) => {
                 return {
+                    studentId: student.id,
                     studentName: student.name,
                     studentEmail: student.email,
                     studentPhone: student.phone
@@ -57,12 +58,12 @@ const StudentListingComponent = (props) => {
 
     }
 
-    const updateStudentHandler = ( ) => {
-        console.log('Update Student Handler');
+    const updateStudentHandler = ({studentId,studentName}) => {
+        console.log('Update Student Handler'+studentId);
     }
 
-    const deleteStudentHandler = ( ) => {
-        console.log('Delete Student Handler');
+    const deleteStudentHandler = ({studentId, studentName}) => {
+        console.log(`Delete Student Handler>>>+`+studentId);
         
     }
 
@@ -95,8 +96,10 @@ const StudentListingComponent = (props) => {
                                     <td>{student.studentName}</td>
                                     <td>{student.studentEmail}</td>
                                     <td>{student.studentPhone}</td>
-                                    <td><button type="button" onClick={updateStudentHandler}>Edit</button></td>
-                                    <td><button type="button" onClick={deleteStudentHandler}>Delete</button></td>
+                                    <td><button type="button" onClick={() => {updateStudentHandler(student)}}>Edit</button></td>
+                                    <td><button type="button" onClick={() => 
+                                        {deleteStudentHandler(student)}}
+                                        >Delete</button></td>
                                 </tr>
                             );
                         })
