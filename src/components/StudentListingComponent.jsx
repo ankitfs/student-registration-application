@@ -30,6 +30,7 @@ const StudentListingComponent = (props) => {
 
     const updateStudentHandler = ({studentId,studentName}) => {
         console.log('Update Student Handler'+studentId);
+        window.location.href=`/student/${studentId}`;
     }
 
     const deleteStudentAPI = async (studentId, studentName) => {
