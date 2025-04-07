@@ -32,9 +32,29 @@ const StudentListingComponent = (props) => {
         console.log('Update Student Handler'+studentId);
     }
 
+    const deleteStudentAPI = async (studentId, studentName) => {
+        console.log('Delete Student API'+studentId);
+        try {
+            const deleteStudentAPI = await axios.delete(`http://localhost:3000/students/${studentId}`);
+            if(deleteStudentAPI != null && deleteStudentAPI.status == 204) {
+                alert(`Student ${studentName} deleted successfully`);
+                fetchStudentList();
+            }
+            else {
+                alert(`Student ${studentName} deletion failed. Kindly Try after sometime`);
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
     const deleteStudentHandler = ({studentId, studentName}) => {
         console.log(`Delete Student Handler>>>+`+studentId);
-        
+        const deleteConfirm = confirm(`Are you sure you want to delete ${studentName} ?`);
+        if(deleteConfirm) {
+            console.log('Proceed to Delete the Student Record');
+            deleteStudentAPI(studentId,studentName);
+        }
     }
 
     useEffect(() => {
